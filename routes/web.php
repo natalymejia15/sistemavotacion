@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use App\Models\Resource;
 use Illuminate\Foundation\Application;
 use Illuminate\Routing\ResourceRegistrar;
@@ -32,3 +35,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('api/resources',[ResourceController::class, 'search']);
+Route::middleware('auth')->post('api/resources', [ResourceController::class, 'store']);
+Route::middleware('auth')->get('api/categories', [CategoryController::class, 'index']);
+
+

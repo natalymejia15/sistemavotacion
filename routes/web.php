@@ -22,7 +22,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [ResourceController::class,'index']);
+Route::get('/', [ResourceController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -34,10 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('api/resources',[ResourceController::class, 'search']);
+Route::get('api/resources', [ResourceController::class, 'search']);
 Route::middleware('auth')->post('api/resources', [ResourceController::class, 'store']);
 Route::middleware('auth')->get('api/categories', [CategoryController::class, 'index']);
-
-

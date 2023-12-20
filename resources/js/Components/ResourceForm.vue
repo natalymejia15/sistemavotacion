@@ -15,18 +15,19 @@ onMounted(() => {
     })
 })
 
-function createResourse() {
+function createResource() {
     axios
         .post("/api/resources", {
             title: title.value,
             description: description.value,
             link: link.value,
+            category_id: category_id.value,
         })
         .then((response) => {
-            console.log(response)
+            window.location.href="/";
         })
-        .catch((error) => {
-            console.error(error);
+        .catch((error)=>{
+            alert(error.message);
         });
 }
 
@@ -37,10 +38,10 @@ function createResourse() {
         <input type="text" v-model="description">
         <input type="text" v-model="link">
         <select v-model="category_id">
-            <option v-for="category in categories" :key="category.id">
+            <option v-for="category in categories" :key="category.id" :value="category.id">
                 {{ category.name }}</option>
         </select>
-        <button @click="createResourse">Crear recursos</button>
+        <button @click="createResource">Crear recursos</button>
 
     </div>
 </template>
